@@ -5,26 +5,87 @@
 #include <string>
 using namespace std;
 
-int main()
+enum StateTypeGame {
+	startGame,
+	waitingInput,
+	response,
+	finish
+};
+
+//StateMachine variables:
+StateTypeGame state;
+
+string words;
+bool notFinished;
+
+
+void ChangeState(StateTypeGame _state)
 {
-	while(1)
-	{
-		int x, y;
-		int sum;
-		string words;
+	state = _state;
+}
+
+
+//Maquina de Estados
+void updateStateMachine()
+{
+	//timer += Time.deltaTime;
+
+	switch (state) {
+	case startGame:
 
 		cout << "\nType something: \n";
+
+		ChangeState(waitingInput);
+
+
+		break;
+	case waitingInput:
+
 		cin >> words;
+		ChangeState(response);
+
+		break;
+
+	case response:
+
+		if (words == "quit") { ChangeState(finish); break; }
+
 		cout << words;
 
-		
+		ChangeState(waitingInput);
 
-		if(words == "quit")
 		break;
+
+
+	case finish:
+		notFinished = false;
+		cout << "\nThanks for playing, See ya!\n";
+		system("pause");
+
+		break;
+	default:
+		//Debug.LogError("updateStateMachine: Unvalid state");
+		break;
+	}
+}
+
+int main()
+{
+	ChangeState(startGame);
+	notFinished = true;
+
+	while(notFinished)
+	{
+
+		updateStateMachine();
+
 	}
 
 	
 }
+
+
+
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
 // Depurar programa: F5 o menú Depurar > Iniciar depuración
