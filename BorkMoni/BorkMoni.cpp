@@ -18,6 +18,7 @@ enum StateTypeGame {
 StateTypeGame state;
 
 string words;
+vector<string> frase;
 bool notFinished;
 Sekai sekaiDeHichiban;
 
@@ -31,6 +32,8 @@ void ChangeState(StateTypeGame _state)
 void updateStateMachine()
 {
 	//timer += Time.deltaTime;
+	string word;
+	size_t pos = 0;
 
 	switch (state) {
 	case startGame:
@@ -43,8 +46,18 @@ void updateStateMachine()
 		break;
 	case waitingInput:
 
-		cin >> words;
-		
+		getline(cin, words);
+
+		if (!words.empty()) {
+			while ((pos = words.find(" ")) != string::npos) {
+				word = words.substr(0, pos);
+				frase.push_back(word);
+				words.erase(0, pos + 1);
+			}
+
+			if (!words.empty())
+				frase.push_back(words);
+		}
 
 		ChangeState(response);
 
@@ -54,9 +67,9 @@ void updateStateMachine()
 
 		if (words == "quit") { ChangeState(finish); break; }
 		
-		sekaiDeHichiban.GameLogic(words);
+		sekaiDeHichiban.GameLogic(frase);
 		ChangeState(waitingInput);
-
+		frase.clear();
 		break;
 
 

@@ -4,7 +4,7 @@
 
 
 // ----------------------------------------------------
-Room::Room(const char* title, const char* _description) : Entity(title, description, NULL)
+Room::Room(const char* title, const char* _description) : Entity(title, _description, NULL)
 {
 	type = ROOM;
 }

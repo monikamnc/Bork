@@ -13,8 +13,6 @@ public:
 
 
 	//Variables
-	string name;
-	string description;
 	Creature* combat_target;
 	int hit_points;
 	int min_damage;

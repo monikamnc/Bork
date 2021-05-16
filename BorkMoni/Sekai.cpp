@@ -7,9 +7,15 @@ Sekai::Sekai()
 	youWin = false;
 
 	// Rooms ----
-	Room seashore ("Seashore", "Lovely sun rises and touch your skin.");
+	Room* seashore = new Room ("Seashore", "Lovely sun rises and touch your skin.");
 	
-	heya.push_back(seashore);
+	entities.push_back(seashore);
+
+	// Player ----
+	player = new Player("Hero", "You are an awesome adventurer!", seashore);
+	player->hit_points = 25;
+
+	entities.push_back(player);
 
 }
 
@@ -17,21 +23,22 @@ Sekai::Sekai()
 Sekai::~Sekai()
 {
 
-	heya.clear();
+	entities.clear();
 }
 
 
 // ----------------------------------------------------
-bool Sekai::GameLogic(string args)
+bool Sekai::GameLogic(vector<string> args)
 {
 	bool ret = true;
 
-	
-		if (args == "Look")
+	if (args.size() == 1)
+	{
+		if (args[0] == "Look")
 		{
-			heya[0].Look();
+			player->Look(args[0]);
 		}
-
+	}
 
 	return ret;
 }

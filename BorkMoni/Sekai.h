@@ -8,6 +8,7 @@
 #include "Room.h"
 #include "Entity.h"
 #include "Creature.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -19,15 +20,10 @@ public:
 	Sekai();
 	~Sekai();
 
-	bool GameLogic(string args);
+	bool GameLogic(vector<string> args);
 	//bool isDead();
 	bool youWin;
-	vector<Room> heya;
-
-private:
-
-
-	//Player* player;
-
+	Player* player;
+	vector<Entity*> entities;
 };
 
