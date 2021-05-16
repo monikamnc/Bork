@@ -1,10 +1,20 @@
 #pragma once
 using namespace std;
 
+#pragma once
 #include <string>
 #include <list>
 
-class Room;
+
+enum EntityType
+{
+	ENTITY,
+	ROOM,
+	EXIT,
+	ITEM,
+	NPC,
+	PLAYER
+};
 
 class Entity
 {
@@ -14,9 +24,9 @@ public:
 	string description;
 	Entity* parent;
 	list<Entity*> childEntities;
+	EntityType type;
 
 	Entity(const string name, const string description, Entity* parent);
-	Entity(const string name, const string description);
-	virtual ~Entity();
+	~Entity();
 };
 

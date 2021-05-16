@@ -1,9 +1,9 @@
 #pragma once
-//#include "Sekai.h"
+#include "Creature.h"
 #include "Room.h"
 #include <vector>
 
-class Player
+class Player : public Creature
 {
 
 public:
@@ -12,18 +12,6 @@ public:
 
 	void Look(const vector<string>& args) const;
 
-	//Variables
-	string name;
-	string description;
-	Room room;
-	int hit_points;
-	int min_damage;
-	int max_damage;
-	int min_protection;
-	int max_protection;
-	
-	//NPC* combat_target;
-	/*Item* weapon;
-	Item* armour;*/
+
 };
 

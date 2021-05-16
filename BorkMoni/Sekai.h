@@ -6,7 +6,8 @@
 #include <array>
 #include <vector>
 #include "Room.h"
-
+#include "Entity.h"
+#include "Creature.h"
 
 using namespace std;
 
