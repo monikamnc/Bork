@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include "Sekai.h"
+
 using namespace std;
 
 enum StateTypeGame {
@@ -17,7 +19,7 @@ StateTypeGame state;
 
 string words;
 bool notFinished;
-
+Sekai sekaiDeHichiban;
 
 void ChangeState(StateTypeGame _state)
 {
@@ -42,6 +44,8 @@ void updateStateMachine()
 	case waitingInput:
 
 		cin >> words;
+		
+
 		ChangeState(response);
 
 		break;
@@ -49,9 +53,8 @@ void updateStateMachine()
 	case response:
 
 		if (words == "quit") { ChangeState(finish); break; }
-
-		cout << words;
-
+		
+		sekaiDeHichiban.GameLogic(words);
 		ChangeState(waitingInput);
 
 		break;
@@ -73,6 +76,7 @@ int main()
 {
 	ChangeState(startGame);
 	notFinished = true;
+
 
 	while(notFinished)
 	{
