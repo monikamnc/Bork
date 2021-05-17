@@ -65,13 +65,13 @@ bool Sekai::GameLogic(vector<string> args)
 		{
 			player->Look(args[0]);
 		}else if (args[0] == "North" || args[0] == "north"){
-			//player->Move(args[0]);
+			player->Move("north");
 		}else if (args[0] == "South" || args[0] == "south"){
-			//player->Move(args[0]);
+			player->Move("south");
 		}else if (args[0] == "East" || args[0] == "east") {
-			//player->Move(args[0]);
+			player->Move("east");
 		}else if (args[0] == "West" || args[0] == "west") {
-			//player->Move(args[0]);
+			player->Move("west");
 		}
 	}
 
