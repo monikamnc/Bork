@@ -9,6 +9,7 @@
 #include "Entity.h"
 #include "Creature.h"
 #include "Player.h"
+#include "Exit.h"
 
 using namespace std;
 
