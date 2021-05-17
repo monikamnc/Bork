@@ -3,7 +3,7 @@ using namespace std;
 
 #pragma once
 #include <string>
-#include <list>
+#include <vector>
 
 
 enum EntityType
@@ -23,7 +23,7 @@ public:
 	string name;
 	string description;
 	Entity* parent;
-	list<Entity*> childEntities;
+	vector<Entity*> childEntities;
 	EntityType type;
 
 	Entity(const string name, const string description, Entity* parent);

@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include "Entity.h"
+#include "Exit.h"
+
 
 using namespace std;
 

@@ -1,6 +1,6 @@
 #include "Exit.h"
 #include <iostream>
-#include "room.h"
+#include "Room.h"
 
 
 // ----------------------------------------------------
@@ -18,3 +18,4 @@ Exit::Exit(const char* name, const char* opposite_name, const char* description,
 Exit::~Exit()
 {
 }
+
