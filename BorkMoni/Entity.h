@@ -28,5 +28,7 @@ public:
 
 	Entity(const string name, const string description, Entity* parent);
 	~Entity();
+
+	void Look() const;
 };
 

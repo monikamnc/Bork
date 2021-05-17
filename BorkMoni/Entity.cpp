@@ -14,3 +14,9 @@ Entity::Entity(const string name, const string description, Entity* parent) :
 Entity::~Entity()
 {
 }
+
+void Entity::Look() const
+{
+	cout << name << "\n";
+	cout << description << "\n";
+}

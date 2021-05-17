@@ -19,8 +19,7 @@ Player::~Player()
 
 void Player::Look(string args) const
 {
-	cout << "\n" << this->parent->name << "\n";
-	cout << this->parent->description << "\n";
+	parent->Look();
 
 
 	cout << "\n" << this->name << "\n";
