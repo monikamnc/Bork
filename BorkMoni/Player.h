@@ -15,6 +15,7 @@ public:
 	void Look(string args) const;
 	void Move(string args);
 	void Take(string args);
+	void Drop(string args);
 
 };
 

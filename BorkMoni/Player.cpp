@@ -76,3 +76,22 @@ void Player::Take(string args)
 	}
 	cout << "\nThere is no item here with that name.\n";
 }
+
+void Player::Drop(string args)
+{
+	for (auto var : this->childEntities)
+	{
+		if (var->type == ITEM)
+		{
+			//Item* it = (Item*)var;
+
+			if (ToLowerCase(var->name) == args)
+			{
+				cout << "\nYou drop " << var->name << ".\n";
+				var->ChangeParent(parent);
+				return;
+			}
+		}
+	}
+	cout << "\nYou don't have that item in your inventory.\n";
+}

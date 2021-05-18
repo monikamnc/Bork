@@ -25,7 +25,12 @@ void Entity::ChangeParent(Entity* parentNew)
 {
 	for (int i = 0; i < parent->childEntities.size(); i++)
 	{
-		if (parent->childEntities[i]->type == PLAYER)
+		/*if (parent->childEntities[i]->type == PLAYER)
+		{
+			parent->childEntities.erase(parent->childEntities.begin() + i);
+			break;
+		}*/
+		if (parent->childEntities[i] == this)
 		{
 			parent->childEntities.erase(parent->childEntities.begin() + i);
 			break;

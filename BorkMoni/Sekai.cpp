@@ -120,20 +120,33 @@ bool Sekai::GameLogic(vector<string> args)
 		if (args[0] == "look")
 		{
 			player->Look(args[0]);
-		}else if (args[0] == "north"){
+		}
+		else if (args[0] == "north")
+		{
 			player->Move(args[0]);
-		}else if (args[0] == "south"){
+		}
+		else if (args[0] == "south")
+		{
 			player->Move(args[0]);
-		}else if (args[0] == "east") {
+		}
+		else if (args[0] == "east")
+		{
 			player->Move(args[0]);
-		}else if (args[0] == "west") {
+		}
+		else if (args[0] == "west")
+		{
 			player->Move(args[0]);
 		}
 	}
-	if (args.size() == 2)
+	else if (args.size() == 2)
 	{
-		if (args[0] == "take") {
+		if (args[0] == "take")
+		{
 			player->Take(args[1]);
+		}
+		else if (args[0] == "drop")
+		{
+			player->Drop(args[1]);
 		}
 	}
 
