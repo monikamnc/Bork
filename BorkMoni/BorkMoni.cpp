@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "Globals.h"
 #include "Sekai.h"
 
 using namespace std;

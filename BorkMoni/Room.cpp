@@ -30,5 +30,13 @@ void Room::Look() const
 			cout << et->description << "\n";
 
 		}
+
+		if (var->type == ITEM)
+		{
+			Item* it = (Item*)var;
+			cout << "There is '" << it->name << "'\n";
+			cout << it->description << "\n";
+
+		}
 	}
 }

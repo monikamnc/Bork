@@ -2,6 +2,7 @@
 #include <string>
 #include "Entity.h"
 #include "Exit.h"
+#include "Item.h"
 
 
 using namespace std;

@@ -1,4 +1,5 @@
 #pragma once
+#include "Globals.h"
 #include "Creature.h"
 #include "Room.h"
 #include "Item.h"

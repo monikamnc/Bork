@@ -64,11 +64,15 @@ void Player::Take(string args)
 	{
 		if (var->type == ITEM)
 		{
-			Item* it = (Item*)var;
-			if (it->name == args)
+			//Item* it = (Item*)var;
+			
+			if (ToLowerCase(var->name) == args)
 			{
-
+				cout << "\nYou take " << var->name << ".\n";
+				var->ChangeParent(this);
+				return;
 			}
 		}
 	}
+	cout << "\nThere is no item here with that name.\n";
 }
