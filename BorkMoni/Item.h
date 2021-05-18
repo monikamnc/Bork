@@ -17,7 +17,7 @@ public:
 	Item(const char* name, const char* description, Entity* parent, bool isClosed, ItemType item_type = GENERIC);
 	~Item();
 
-
+	void Look() const;
 
 
 	//Variables

@@ -58,3 +58,17 @@ void Player::Move(string args)
 	cout << "\nThere is no exit at '" << args << "'.\n";
 }
 
+void Player::Take(string args)
+{
+	for (auto var : parent->childEntities)
+	{
+		if (var->type == ITEM)
+		{
+			Item* it = (Item*)var;
+			if (it->name == args)
+			{
+
+			}
+		}
+	}
+}

@@ -22,6 +22,7 @@ public:
 	~Sekai();
 
 	bool GameLogic(vector<string> args);
+	string ToLowerCase(string s);
 	//bool isDead();
 	bool youWin;
 	Player* player;

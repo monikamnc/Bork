@@ -1,6 +1,7 @@
 #pragma once
 #include "Creature.h"
 #include "Room.h"
+#include "Item.h"
 #include <vector>
 
 class Player : public Creature
@@ -12,6 +13,7 @@ public:
 
 	void Look(string args) const;
 	void Move(string args);
+	void Take(string args);
 
 };
 

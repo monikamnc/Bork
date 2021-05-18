@@ -53,25 +53,44 @@ Sekai::~Sekai()
 	entities.clear();
 }
 
+string Sekai::ToLowerCase(string s) 
+{
+	for (auto& c : s)
+	{
+		c = tolower(c);
+	}
+	return s;
+}
 
 // ----------------------------------------------------
 bool Sekai::GameLogic(vector<string> args)
 {
 	bool ret = true;
 
+	for (auto& f : args)
+	{
+		f = ToLowerCase(f);
+	}
+
 	if (args.size() == 1)
 	{
-		if (args[0] == "Look")
+		if (args[0] == "look")
 		{
 			player->Look(args[0]);
-		}else if (args[0] == "North" || args[0] == "north"){
-			player->Move("north");
-		}else if (args[0] == "South" || args[0] == "south"){
-			player->Move("south");
-		}else if (args[0] == "East" || args[0] == "east") {
-			player->Move("east");
-		}else if (args[0] == "West" || args[0] == "west") {
-			player->Move("west");
+		}else if (args[0] == "north"){
+			player->Move(args[0]);
+		}else if (args[0] == "south"){
+			player->Move(args[0]);
+		}else if (args[0] == "east") {
+			player->Move(args[0]);
+		}else if (args[0] == "west") {
+			player->Move(args[0]);
+		}
+	}
+	if (args.size() == 2)
+	{
+		if (args[0] == "take") {
+			player->Take(args[1]);
 		}
 	}
 

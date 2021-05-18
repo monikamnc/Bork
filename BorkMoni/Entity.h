@@ -1,10 +1,8 @@
 #pragma once
-using namespace std;
-
-#pragma once
 #include <string>
 #include <vector>
 
+using namespace std;
 
 enum EntityType
 {
