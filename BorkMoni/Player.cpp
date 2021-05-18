@@ -27,7 +27,7 @@ void Player::Look(string args) const
 	cout << this->description << "\n";
 }
 
-void Player::Move(string args) const
+void Player::Move(string args)
 {
 	
 	for (auto var : parent->childEntities)
@@ -37,28 +37,24 @@ void Player::Move(string args) const
 			Exit* et = (Exit*)var;
 			if (et->name == args) 
 			{
-				//Si encontramos una salida y es la dirección correcta, borramos el child player de roomX
-				for (int i = 0; i < parent->childEntities.size(); i++)
+
+				if (et->locked)
 				{
-					if (parent->childEntities[i]->type == PLAYER)
-					{
-						parent->childEntities.erase(parent->childEntities.begin() + i);
-						break;
-					}
+					cout << "\nThat exit is locked.\n";
+					return;
 				}
+
+				//Si encontramos una salida y es la dirección correcta, borramos el child player de roomX
 				//Asignar nuevo parent a player
-				Entity* owo = (Entity*) et->destination;
+				cout << "\nYou take direction " << et->GetNameFrom((Room*)parent) << "...\n";
 
-				parent->childEntities.push_back(var);
+				Entity* aux = (et->GetDestinationFrom((Room*)parent));
+				ChangeParent(aux);
+
+				return;
 			}
-
-
 		}
 	}
-
-
-
-
-	
+	cout << "\nThere is no exit at '" << args << "'.\n";
 }
 

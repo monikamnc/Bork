@@ -30,5 +30,6 @@ public:
 	~Entity();
 
 	void Look() const;
+	void ChangeParent(Entity* parentNew);
 };
 

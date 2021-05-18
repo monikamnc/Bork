@@ -19,3 +19,24 @@ Exit::~Exit()
 {
 }
 
+Entity* Exit::GetDestinationFrom(const Room* room)
+{
+	//Si tu eres yo y yo soy tu quién es más tonto de los 2?
+	if (room == parent)
+		return (Entity*)destination;
+	if (room == destination)
+		return parent;
+
+	return NULL;
+}
+
+const string& Exit::GetNameFrom(const Room* room) const
+{
+	if (room == parent)
+		return name;
+	if (room == destination)
+		return opposite_name;
+
+	return name;
+}
+

@@ -20,3 +20,20 @@ void Entity::Look() const
 	cout << name << "\n";
 	cout << description << "\n";
 }
+
+void Entity::ChangeParent(Entity* parentNew)
+{
+	for (int i = 0; i < parent->childEntities.size(); i++)
+	{
+		if (parent->childEntities[i]->type == PLAYER)
+		{
+			parent->childEntities.erase(parent->childEntities.begin() + i);
+			break;
+		}
+	}
+	
+	parent = parentNew;
+
+	parent->childEntities.push_back(this);
+	
+}

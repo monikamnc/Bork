@@ -11,7 +11,7 @@ public:
 	~Player();
 
 	void Look(string args) const;
-	void Move(string args) const;
+	void Move(string args);
 
 };
 
