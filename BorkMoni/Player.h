@@ -16,6 +16,7 @@ public:
 	void Move(string args);
 	void Take(string args);
 	void Drop(string args);
+	void Use(string usableO, string destinationO);
 
 };
 

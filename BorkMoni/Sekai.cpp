@@ -55,7 +55,8 @@ Sekai::Sekai()
 	// Items -----
 	Item* box = new Item("Box", "Can contain something useful. It has a tiny hole...", fisherH, true);
 	Item* ladder = new Item("Ladder", "Now you can reach new heighs.", trees, false);
-	Item* tiny = new Item("Key", "Tiny key, may enter small holes.", fisherman, false);
+	//Item* tiny = new Item("Key", "Tiny key, may enter small holes.", fisherman, false);
+	Item* tiny = new Item("Key", "Tiny key, may enter small holes.", fisherH, false);
 	Item* potion = new Item("Potion", "Crystal glass full of a strange liquid.", skeleton, false);
 	Item* rum = new Item("Rum", "A glass bottle. You can read in a ugly sticker the word 'Rum'.", seashore, false);
 	box->usable = tiny;
@@ -108,10 +109,9 @@ Sekai::~Sekai()
 bool Sekai::GameLogic(vector<string> args)
 {
 	bool ret = true;
-
+	//Transformar las mayúsculas en minúsculas
 	for (auto& f : args)
 	{
-
 		f = ToLowerCase(f);
 	}
 
@@ -147,6 +147,13 @@ bool Sekai::GameLogic(vector<string> args)
 		else if (args[0] == "drop")
 		{
 			player->Drop(args[1]);
+		}
+	}
+	else if (args.size() == 4)
+	{
+		if (args[0] == "use")
+		{
+			player->Use(args[1],args[3]);
 		}
 	}
 

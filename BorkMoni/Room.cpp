@@ -38,5 +38,13 @@ void Room::Look() const
 			cout << it->description << "\n";
 
 		}
+
+		if (var->type == NPC)
+		{
+			Item* it = (Item*)var;
+			cout << "There is '" << it->name << "'\n";
+			cout << it->description << "\n";
+
+		}
 	}
 }

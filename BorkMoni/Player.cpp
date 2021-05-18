@@ -95,3 +95,41 @@ void Player::Drop(string args)
 	}
 	cout << "\nYou don't have that item in your inventory.\n";
 }
+
+void Player::Use(string usableO, string destinationO)
+{
+	for (auto invenUsa : this->childEntities)
+	{
+		if (ToLowerCase(invenUsa->name) == usableO && invenUsa->type == ITEM)
+		{
+			for (auto invenDest : this->childEntities)
+			{
+				if (ToLowerCase(invenDest->name) == destinationO)
+				{
+					if (((Item*)invenDest)->usable == invenUsa) 
+					{
+						if (((Item*)invenDest)->closed)
+						{
+							cout << "\nYou use " << usableO << " in " << destinationO << "...\n";
+							((Item*)invenDest)->closed = false;
+							((Item*)invenDest)->Look();
+							return;
+						}
+						else
+						{
+							cout << "\nThe " << usableO << " can not be used in " << destinationO << "...\n";
+							return;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	cout << "\nThe " << usableO << " can not be found in your inventory...\n";
+	return;
+
+	for (auto var : parent->childEntities)
+	{
+	}
+}
