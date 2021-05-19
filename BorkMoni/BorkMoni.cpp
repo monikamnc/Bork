@@ -21,7 +21,7 @@ StateTypeGame state;
 string words;
 vector<string> frase;
 bool notFinished;
-Sekai sekaiDeHichiban;
+Sekai sekaiDeIchiban;
 
 void ChangeState(StateTypeGame _state)
 {
@@ -39,7 +39,7 @@ void updateStateMachine()
 	switch (state) {
 	case startGame:
 
-		cout << "\nType something: \n";
+		cout << "\nWelcome to Bork!\n";
 
 		ChangeState(waitingInput);
 
@@ -68,7 +68,8 @@ void updateStateMachine()
 
 		if (words == "quit") { ChangeState(finish); break; }
 		
-		sekaiDeHichiban.GameLogic(frase);
+		sekaiDeIchiban.GameLogic(frase);
+		if(sekaiDeIchiban.youWin) { ChangeState(finish); break; }
 		ChangeState(waitingInput);
 		frase.clear();
 		break;

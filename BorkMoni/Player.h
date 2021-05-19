@@ -21,6 +21,7 @@ public:
 	void Give(string item, string destinationNPC);
 	void Loot(string args);
 	void Equip(string item);
+	bool Attack(string enemy);
 
 };
 

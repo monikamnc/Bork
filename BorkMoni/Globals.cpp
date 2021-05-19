@@ -8,3 +8,8 @@ string ToLowerCase(string s)
 	}
 	return s;
 }
+
+int Rando(int min, int max)
+{
+	return rand() % max + min;
+}

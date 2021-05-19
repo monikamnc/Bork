@@ -179,6 +179,11 @@ bool Sekai::GameLogic(vector<string> args)
 			player->Equip(args[1]);
 			return ret;
 		}
+		else if (args[0] == "attack")
+		{
+			youWin = player->Attack(args[1]);
+			return ret;
+		}
 	}
 	else if (args.size() == 4)
 	{

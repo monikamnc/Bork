@@ -196,6 +196,7 @@ void Player::Inventory()
 		cout << "You search in your pockets and find nothing.\n";
 		return;
 	}
+
 	for (auto item : this->childEntities)
 	{
 		if (((Item*)item)->item_type == WEAPON && this->weapon == ((Item*)item))
@@ -284,4 +285,22 @@ void Player::Equip(string item)
 		}
 	}
 	cout << "The " << item << " is not in your inventory.\n";
+}
+
+bool Player::Attack(string enemy) 
+{
+	if (!this->weapon) 
+	{
+		cout << "You can't attack without a weapon equipped.\n";
+		return false;
+	}
+
+	((Creature*)this)->Attack(enemy);
+	((Creature*)this)->ReceiveAttack(enemy);
+	if (((Creature*)this)->hit_points <= 0)
+	{
+		cout << "Your life ends here!! BAD ENDING\n";
+		return true;
+	}
+	return false;
 }

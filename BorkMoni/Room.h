@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "Exit.h"
 #include "Item.h"
+#include "Creature.h"
 
 
 using namespace std;

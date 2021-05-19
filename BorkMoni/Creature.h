@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "Room.h"
+#include "Globals.h"
 using namespace std;
 
 class Room;
@@ -12,16 +13,12 @@ public:
 	~Creature();
 
 	void AutoEquip();
+	/*virtual*/ void Attack(string enemy);
+	/*virtual*/ void ReceiveAttack(string enemy);
 
 	//Variables
 	Creature* combat_target;
 	int hit_points;
-	int min_damage;
-	int max_damage;
-	int min_protection;
-	int max_protection;
-
-	//NPC* combat_target;
 	Item* weapon;
 	Item* armour;
 };

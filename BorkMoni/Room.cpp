@@ -41,9 +41,16 @@ void Room::Look() const
 
 		if (var->type == NPC)
 		{
-			Item* it = (Item*)var;
-			cout << "There is '" << it->name << "'\n";
-			cout << it->description << "\n";
+			Creature* it = (Creature*)var;
+			if (it->hit_points > 0)
+			{
+				cout << "There is '" << it->name << "'\n";
+				cout << it->description << "\n";
+			}
+			else
+			{
+				cout << "There is the poor corpse of '" << it->name << "'.\n";
+			}
 
 		}
 	}
