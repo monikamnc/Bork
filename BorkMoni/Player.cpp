@@ -98,6 +98,7 @@ void Player::Drop(string args)
 
 void Player::Use(string usableO, string destinationO)
 {
+	//Player deberá tener los dos objetos en el inventario
 	for (auto invenUsa : this->childEntities)
 	{
 		if (ToLowerCase(invenUsa->name) == usableO && invenUsa->type == ITEM)
@@ -128,8 +129,21 @@ void Player::Use(string usableO, string destinationO)
 
 	cout << "\nThe " << usableO << " can not be found in your inventory...\n";
 	return;
-
-	for (auto var : parent->childEntities)
+	//Player deberá tener el objeto usable en el inventario pero el destinatario debe estar en la misma sala
+	/*for (auto var : parent->childEntities)
 	{
+	}*/
+}
+
+void Player::Inventory()
+{
+	for (auto item : this->childEntities)
+	{
+		if (((Item*)item)->item_type == WEAPON)
+			cout << "\n" << item->name << " (as weapon)" << "\n";
+		else if (((Item*)item)->item_type == ARMOUR)
+			cout << "\n" << item->name << " (as armour)" << "\n";
+		else
+			cout << "\n" << item->name << "\n";
 	}
 }

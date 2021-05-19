@@ -137,6 +137,10 @@ bool Sekai::GameLogic(vector<string> args)
 		{
 			player->Move(args[0]);
 		}
+		else if (args[0] == "inventory")
+		{
+			player->Inventory();
+		}
 	}
 	else if (args.size() == 2)
 	{
