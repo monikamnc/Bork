@@ -23,8 +23,8 @@ void Player::Look(string args) const
 	rum->Look();
 
 
-	cout << "\n" << this->name << "\n";
-	cout << this->description << "\n";
+	/*cout << "\n" << this->name << "\n";
+	cout << this->description << "\n";*/
 }
 
 void Player::Move(string args)
@@ -159,9 +159,9 @@ void Player::Inventory()
 {
 	for (auto item : this->childEntities)
 	{
-		if (((Item*)item)->item_type == WEAPON)
+		if (((Item*)item)->item_type == WEAPON && this->weapon == ((Item*)item))
 			cout << "\n" << item->name << " (as weapon)" << "\n";
-		else if (((Item*)item)->item_type == ARMOUR)
+		else if (((Item*)item)->item_type == ARMOUR && this->armour == ((Item*)item))
 			cout << "\n" << item->name << " (as armour)" << "\n";
 		else
 			cout << "\n" << item->name << "\n";
@@ -220,4 +220,29 @@ void Player::Loot(string args)
 		}
 	}
 	cout << "\n The" << args <<" is not in this room.\n";
+}
+
+void Player::Equip(string item)
+{
+	for (auto invenItem : this->childEntities)
+	{
+		if (ToLowerCase(invenItem->name) == item && invenItem->type == ITEM)
+		{
+			if (((Item*)invenItem)->item_type == WEAPON)
+			{
+				this->weapon = ((Item*)invenItem);
+				cout << "You equip " << item << " as your weapon.\n";
+				return;
+			}
+			else if (((Item*)invenItem)->item_type == ARMOUR)
+			{
+				this->armour = ((Item*)invenItem);
+				cout << "You equip " << item << " as your armour.\n";
+				return;
+			}
+			cout << "You cannot equip " << item << ".\n";
+			return;
+		}
+	}
+	cout << "The " << item << " is not in your inventory.\n";
 }

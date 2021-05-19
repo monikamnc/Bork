@@ -20,6 +20,7 @@ public:
 	void Inventory();
 	void Give(string item, string destinationNPC);
 	void Loot(string args);
+	void Equip(string item);
 
 };
 
