@@ -142,6 +142,8 @@ void Player::Use(string usableO, string destinationO)
 					}
 				}
 			}
+			cout << "\nThe " << destinationO << " can not be found in your inventory...\n";
+			return;
 		}
 	}
 
@@ -201,4 +203,21 @@ void Player::Give(string item, string destinationNPC)
 
 	return;
 
+}
+
+void Player::Loot(string args)
+{
+	for (auto npc : parent->childEntities)
+	{
+		if (npc->type == NPC && ((Creature*)npc)->hit_points <= 0)
+		{
+			for (auto item : npc->childEntities)
+			{
+				cout << "\nYou loot " << item->name << ".\n";
+				item->ChangeParent(this);
+			}
+			return;
+		}
+	}
+	cout << "\n The" << args <<" is not in this room.\n";
 }

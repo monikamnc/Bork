@@ -55,8 +55,7 @@ Sekai::Sekai()
 	// Items -----
 	Item* box = new Item("Box", "Can contain something useful. It has a tiny hole...", fisherH, true);
 	Item* ladder = new Item("Ladder", "Now you can reach new heighs.", trees, false);
-	//Item* tiny = new Item("Key", "Tiny key, may enter small holes.", fisherman, false);
-	Item* tiny = new Item("Key", "Tiny key, may enter small holes.", fisherH, false);
+	Item* tiny = new Item("Key", "Tiny key, may enter small holes.", fisherman, false);
 	Item* potion = new Item("Potion", "Crystal glass full of a strange liquid.", skeleton, false);
 	Item* rum = new Item("Rum", "A glass bottle. You can read in a ugly sticker the word 'Rum'.", seashore, false);
 	box->usable = tiny;
@@ -120,26 +119,32 @@ bool Sekai::GameLogic(vector<string> args)
 		if (args[0] == "look")
 		{
 			player->Look(args[0]);
+			return ret;
 		}
 		else if (args[0] == "north")
 		{
 			player->Move(args[0]);
+			return ret;
 		}
 		else if (args[0] == "south")
 		{
 			player->Move(args[0]);
+			return ret;
 		}
 		else if (args[0] == "east")
 		{
 			player->Move(args[0]);
+			return ret;
 		}
 		else if (args[0] == "west")
 		{
 			player->Move(args[0]);
+			return ret;
 		}
 		else if (args[0] == "inventory")
 		{
 			player->Inventory();
+			return ret;
 		}
 	}
 	else if (args.size() == 2)
@@ -147,10 +152,17 @@ bool Sekai::GameLogic(vector<string> args)
 		if (args[0] == "take")
 		{
 			player->Take(args[1]);
+			return ret;
 		}
 		else if (args[0] == "drop")
 		{
 			player->Drop(args[1]);
+			return ret;
+		}
+		else if (args[0] == "loot")
+		{
+			player->Loot(args[1]);
+			return ret;
 		}
 	}
 	else if (args.size() == 4)
@@ -158,12 +170,15 @@ bool Sekai::GameLogic(vector<string> args)
 		if (args[0] == "use")
 		{
 			player->Use(args[1],args[3]);
+			return ret;
 		}
 		else if (args[0] == "give")
 		{
 			player->Give(args[1], args[3]);
+			return ret;
 		}
 	}
 
+	cout << "I don't understand you, try again please.\n";
 	return ret;
 }

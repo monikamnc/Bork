@@ -19,6 +19,7 @@ public:
 	void Use(string usableO, string destinationO);
 	void Inventory();
 	void Give(string item, string destinationNPC);
+	void Loot(string args);
 
 };
 
