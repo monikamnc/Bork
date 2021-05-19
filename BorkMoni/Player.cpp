@@ -35,9 +35,27 @@ void Player::Move(string args)
 		if (var->type == EXIT)
 		{
 			Exit* et = (Exit*)var;
-			if (et->name == args) 
+			
+			if (et->name == args && parent == var->parent) 
 			{
 
+				if (et->locked)
+				{
+					cout << "\nThat exit is locked.\n";
+					return;
+				}
+
+				//Si encontramos una salida y es la dirección correcta, borramos el child player de roomX
+				//Asignar nuevo parent a player
+				cout << "\nYou take direction " << et->GetNameFrom((Room*)parent) << "...\n";
+
+				Entity* aux = (et->GetDestinationFrom((Room*)parent));
+				ChangeParent(aux);
+
+				return;
+			}
+			else if (et->opposite_name == args && ((Room*)parent) == et->destination)
+			{
 				if (et->locked)
 				{
 					cout << "\nThat exit is locked.\n";
