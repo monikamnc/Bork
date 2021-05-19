@@ -11,6 +11,7 @@ public:
 	Creature(const string name, const string description, Room* room);
 	~Creature();
 
+	void AutoEquip();
 
 	//Variables
 	Creature* combat_target;
@@ -21,7 +22,7 @@ public:
 	int max_protection;
 
 	//NPC* combat_target;
-	/*Item* weapon;
-	Item* armour;*/
+	Item* weapon;
+	Item* armour;
 };
 

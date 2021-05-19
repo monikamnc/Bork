@@ -68,12 +68,12 @@ Sekai::Sekai()
 	Item* rod = new Item("Rod", "A fishing rod, looks worn out.", fisherman, false, WEAPON);
 	rod->min_value = 1;
 	rod->max_value = 3;
-	//fisherman->AutoEquip();
+	fisherman->AutoEquip();
 
 	Item* bone = new Item("Bone", "A bone from the leg of the skeleton.", skeleton, false, WEAPON);
 	bone->min_value = 4;
 	bone->max_value = 7;
-	//skeleton->AutoEquip();
+	skeleton->AutoEquip();
 
 	Item* gun = new Item("Gun", "A rusty gun that still has some ammunition.", gunDeck, false, WEAPON);
 	gun->min_value = 4;
@@ -162,6 +162,11 @@ bool Sekai::GameLogic(vector<string> args)
 		else if (args[0] == "loot")
 		{
 			player->Loot(args[1]);
+			return ret;
+		}
+		else if (args[0] == "equip")
+		{
+			player->Equip(args[1]);
 			return ret;
 		}
 	}
