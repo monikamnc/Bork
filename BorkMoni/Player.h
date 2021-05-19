@@ -18,6 +18,7 @@ public:
 	void Drop(string args);
 	void Use(string usableO, string destinationO);
 	void Inventory();
+	void Give(string item, string destinationNPC);
 
 };
 

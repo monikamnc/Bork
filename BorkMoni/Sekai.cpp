@@ -159,6 +159,10 @@ bool Sekai::GameLogic(vector<string> args)
 		{
 			player->Use(args[1],args[3]);
 		}
+		else if (args[0] == "give")
+		{
+			player->Give(args[1], args[3]);
+		}
 	}
 
 	return ret;

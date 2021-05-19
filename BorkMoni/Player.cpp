@@ -147,3 +147,40 @@ void Player::Inventory()
 			cout << "\n" << item->name << "\n";
 	}
 }
+
+void Player::Give(string item, string destinationNPC)
+{
+	
+	for (auto invenItem : this->childEntities)
+	{
+		if (ToLowerCase(invenItem->name) == item && invenItem->type == ITEM)
+		{
+			for (auto npc : parent->childEntities)
+			{
+				if (ToLowerCase(npc->name) == destinationNPC)
+				{
+					if (ToLowerCase(invenItem->name) == "rum" && ToLowerCase(npc->name) == "fisherman")
+					{
+						invenItem->ChangeParent(NULL);
+						((Creature*)npc)->hit_points = 0;
+						cout << "\nYou give '" << invenItem->name << "' to " << npc->name << ".\n";
+						cout << "The '" << npc->name << "' starts to drink " << invenItem->name << "...\n";
+						cout << "The '" << npc->name << "' chokes and dies.\n";
+						return;
+					}
+					else
+					{
+						cout << "\nYou can't give '" << item << "' to " << npc->name << ".\n";
+						return;
+					}
+				}
+			}
+			cout << "\n '" << destinationNPC << "' is not in this room.\n";
+			return;
+		}
+	}
+	cout << "\n '" << item << "' not found in your inventory.\n";
+
+	return;
+
+}

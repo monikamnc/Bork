@@ -38,7 +38,7 @@ void Entity::ChangeParent(Entity* parentNew)
 	}
 	
 	parent = parentNew;
-
-	parent->childEntities.push_back(this);
+	if (parentNew != NULL)
+		parent->childEntities.push_back(this);
 	
 }
