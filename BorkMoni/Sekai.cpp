@@ -14,18 +14,18 @@ Sekai::Sekai()
 	//Room* sea = new Room("Sea", "It seems someone is watching you under the water.");
 	Room* ship = new Room("Ship - Main Deck", "It seems it was an abandoned ship.");
 	Room* gunDeck = new Room("Ship - Gun Deck", "Plenty of guns and cansons are surrounded.");
-	Room* orlopDeck = new Room("Ship - Orlop Deck", "It seems someone is watching you under the water.");
+	Room* orlopDeck = new Room("Ship - Orlop Deck", "It seems someone is watching from the other side of the room.");
 
 
 	Exit* seashoreToFisherH = new Exit("north", "south", "Promenade", seashore, fisherH);
 	Exit* fisherHToRiver = new Exit("west", "east", "Grass Path", fisherH, river);
 	//Exit* seashoreToSea = new Exit("south", "north", "Let's Swim", seashore, sea);
-	Exit* seashoreToShip = new Exit("east", "west", "Wellcome on Board", seashore, ship);
-	Exit* shipToGun = new Exit("down", "up", "Wellcome on Board", ship, gunDeck);
-	Exit* gunToOrlop = new Exit("down", "up", "Wellcome on Board", gunDeck, orlopDeck);
+	Exit* seashoreToShip = new Exit("east", "west", "Ship's sandy road", seashore, ship);
+	Exit* shipToGun = new Exit("down", "up", "Chunky stairs", ship, gunDeck);
+	Exit* gunToOrlop = new Exit("down", "up", "Crushy stairs", gunDeck, orlopDeck);
 
 	//seashoreToSea->locked = true;
-	seashoreToShip->locked = true;
+	//seashoreToShip->locked = true;
 
 	entities.push_back(seashore);
 	entities.push_back(fisherH);
@@ -141,6 +141,16 @@ bool Sekai::GameLogic(vector<string> args)
 			player->Move(args[0]);
 			return ret;
 		}
+		else if (args[0] == "down")
+		{
+			player->Move(args[0]);
+			return ret;
+		}
+		else if (args[0] == "up")
+		{
+			player->Move(args[0]);
+			return ret;
+		}
 		else if (args[0] == "inventory")
 		{
 			player->Inventory();
@@ -156,7 +166,7 @@ bool Sekai::GameLogic(vector<string> args)
 		}
 		else if (args[0] == "drop")
 		{
-			player->Drop(args[1]);
+			player->Drop(args[1], "");
 			return ret;
 		}
 		else if (args[0] == "loot")
@@ -180,6 +190,11 @@ bool Sekai::GameLogic(vector<string> args)
 		else if (args[0] == "give")
 		{
 			player->Give(args[1], args[3]);
+			return ret;
+		}
+		else if (args[0] == "drop")
+		{
+			player->Drop(args[1], args[3]);
 			return ret;
 		}
 	}

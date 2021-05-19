@@ -95,23 +95,57 @@ void Player::Take(string args)
 	cout << "\nThere is no item here with that name.\n";
 }
 
-void Player::Drop(string args)
+void Player::Drop(string itemDropped, string itemContainer)
 {
-	for (auto var : this->childEntities)
+	if (!itemContainer.size())
 	{
-		if (var->type == ITEM)
+		for (auto var : this->childEntities)
 		{
-			//Item* it = (Item*)var;
-
-			if (ToLowerCase(var->name) == args)
+			if (var->type == ITEM)
 			{
-				cout << "\nYou drop " << var->name << ".\n";
-				var->ChangeParent(parent);
+				//Item* it = (Item*)var;
+
+				if (ToLowerCase(var->name) == itemDropped)
+				{
+					cout << "\nYou drop " << var->name << ".\n";
+					var->ChangeParent(parent);
+					return;
+				}
+			}
+		}
+		cout << "\nYou don't have that item in your inventory.\n";
+	}
+	else if (itemDropped != itemContainer)
+	{
+		for (auto var : this->childEntities)
+		{
+			if (var->type == ITEM && ToLowerCase(var->name) == itemDropped)
+			{
+				for (auto con : this->childEntities)
+				{
+					if (con->type == ITEM && ToLowerCase(con->name) == itemContainer)
+					{
+						if (((Item*)con)->item_type == GENERIC)
+						{
+							cout << "\nYou drop " << var->name << " into " << con->name << ".\n";
+							var->ChangeParent(con);
+							return;
+						}
+						else
+						{
+							cout << "\nYou can't put " << var->name << " into " << con->name << ".\n";
+							return;
+						}
+					}
+				}
+				cout << "\nYou don't have " << itemContainer << " in your inventory.\n";
 				return;
 			}
 		}
+		cout << "\nYou don't have " << itemDropped << " in your inventory.\n";
+		return;
 	}
-	cout << "\nYou don't have that item in your inventory.\n";
+	cout << "\nYou can't put " << itemDropped << " into " << itemContainer << ".\n";
 }
 
 void Player::Use(string usableO, string destinationO)
@@ -157,6 +191,11 @@ void Player::Use(string usableO, string destinationO)
 
 void Player::Inventory()
 {
+	if (this->childEntities.size() == 0)
+	{
+		cout << "You search in your pockets and find nothing.\n";
+		return;
+	}
 	for (auto item : this->childEntities)
 	{
 		if (((Item*)item)->item_type == WEAPON && this->weapon == ((Item*)item))

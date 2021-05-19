@@ -17,7 +17,7 @@ Room::~Room()
 // ----------------------------------------------------
 void Room::Look() const
 {
-	cout << "\n" << name << "\n";
+	cout << name << "\n";
 	cout << description;
 	cout << "\n";
 
@@ -26,7 +26,7 @@ void Room::Look() const
 		if (var->type == EXIT)
 		{
 			Exit* et = (Exit*)var;
-			cout << et->name << " to " << et->opposite_name << "\n";
+			cout << "Direction: " << et->GetNameFrom((Room*)this) << "\n";
 			cout << et->description << "\n";
 
 		}
@@ -47,4 +47,6 @@ void Room::Look() const
 
 		}
 	}
+
+	cout << "\n";
 }

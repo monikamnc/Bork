@@ -15,7 +15,7 @@ public:
 	void Look(string args) const;
 	void Move(string args);
 	void Take(string args);
-	void Drop(string args);
+	void Drop(string itemDropped, string itemContainer);
 	void Use(string usableO, string destinationO);
 	void Inventory();
 	void Give(string item, string destinationNPC);
