@@ -39,7 +39,9 @@ void updateStateMachine()
 	switch (state) {
 	case startGame:
 
-		cout << "\nWelcome to Bork!\n";
+		cout << "Welcome to Bork!\n";
+		cout << "You have to find and drink the eternal life potion to escape from this universe.\n";
+		cout << "--------------------------------------------------------------------------------\n";
 
 		ChangeState(waitingInput);
 
