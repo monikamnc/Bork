@@ -161,7 +161,7 @@ bool Sekai::GameLogic(vector<string> args)
 	{
 		if (args[0] == "take")
 		{
-			player->Take(args[1]);
+			player->Take(args[1], "");
 			return ret;
 		}
 		else if (args[0] == "drop")
@@ -200,6 +200,11 @@ bool Sekai::GameLogic(vector<string> args)
 		else if (args[0] == "drop")
 		{
 			player->Drop(args[1], args[3]);
+			return ret;
+		}
+		else if (args[0] == "take")
+		{
+			player->Take(args[1], args[3]);
 			return ret;
 		}
 	}

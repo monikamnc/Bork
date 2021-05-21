@@ -76,23 +76,58 @@ void Player::Move(string args)
 	cout << "There is no exit at '" << args << "'.\n";
 }
 
-void Player::Take(string args)
+void Player::Take(string item, string itemContainer)
 {
-	for (auto var : parent->childEntities)
+	if (!itemContainer.size())
 	{
-		if (var->type == ITEM)
+		for (auto var : parent->childEntities)
 		{
-			//Item* it = (Item*)var;
-			
-			if (ToLowerCase(var->name) == args)
+			if (var->type == ITEM)
 			{
-				cout << "You take " << var->name << ".\n";
-				var->ChangeParent(this);
-				return;
+				//Item* it = (Item*)var;
+
+				if (ToLowerCase(var->name) == item)
+				{
+					cout << "You take " << var->name << ".\n";
+					var->ChangeParent(this);
+					return;
+				}
 			}
 		}
+		cout << "There is no item here with that name.\n";
+		return;
 	}
-	cout << "There is no item here with that name.\n";
+	else if (item != itemContainer)
+	{
+		for (auto con : this->childEntities)
+		{
+			if (con->type == ITEM && ToLowerCase(con->name) == itemContainer)
+			{
+				if (!((Item*)con)->closed)
+				{
+					for (auto it : con->childEntities)
+					{
+						if (it->type == ITEM && ToLowerCase(it->name) == item)
+						{
+							cout << "You take " << it->name << " from " << con->name << ".\n";
+							it->ChangeParent(this);
+							return;						
+						}
+					}
+					cout << "The item " << item << " is not in "<< itemContainer << ".\n";
+					return;
+				}
+				else
+				{
+					cout << "The item " << itemContainer << " is closed.\n";
+					return;
+				}
+			}
+		}
+		cout << "You don't have " << itemContainer << " in your inventory.\n";
+		return;
+	}
+	cout << "You can't take " << item << " from " << itemContainer << ".\n";
 }
 
 void Player::Drop(string itemDropped, string itemContainer)
@@ -166,7 +201,7 @@ void Player::Use(string usableO, string destinationO)
 						{
 							cout << "You use " << usableO << " in " << destinationO << "...\n";
 							((Item*)invenDest)->closed = false;
-							((Item*)invenDest)->Look();
+							invenDest->Look();
 							return;
 						}
 						else
@@ -265,7 +300,7 @@ void Player::Loot(string args)
 			return;
 		}
 	}
-	cout << "The " << args <<" is not in this room.\n";
+	cout << "You can't loot " << args <<".\n";
 }
 
 void Player::Equip(string item)

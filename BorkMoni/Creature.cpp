@@ -68,20 +68,27 @@ void Creature::ReceiveAttack(string enemy)
 	{
 		if (ToLowerCase(e->name) == enemy && ((Creature*)e)->hit_points > 0)
 		{
-			int damage = Rando(((Creature*)e)->weapon->min_value, ((Creature*)e)->weapon->min_value);
-			if (((Creature*)this)->armour != NULL)
+			if (((Creature*)e)->weapon)
 			{
-				int blocked = Rando(armour->min_value, armour->max_value);
-				damage -= blocked;
-				if (damage <= 0)
+				int damage = Rando(((Creature*)e)->weapon->min_value, ((Creature*)e)->weapon->min_value);
+				if (((Creature*)this)->armour != NULL)
 				{
-					damage = 0;
+					int blocked = Rando(armour->min_value, armour->max_value);
+					damage -= blocked;
+					if (damage <= 0)
+					{
+						damage = 0;
+					}
+					cout << "You block " << blocked << " points of damage.\n";
 				}
-				cout << "You block " << blocked << " points of damage.\n";
+				cout << "You receive " << damage << " points of damage.\n";
+				((Creature*)this)->hit_points -= damage;
+				return;
 			}
-			cout << "You receive " << damage << " points of damage.\n";
-			((Creature*)this)->hit_points -= damage;
-			return;
+			else
+			{
+				cout << "The " << e->name << " does nothing.\n";
+			}
 		}
 	}
 }
