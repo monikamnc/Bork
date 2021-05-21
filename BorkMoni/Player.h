@@ -22,7 +22,7 @@ public:
 	void Loot(string args);
 	void Equip(string item);
 	bool Attack(string enemy);
-	void Unlock(string item, string exit);
+	void Unlock(string exit, string item);
 
 };
 

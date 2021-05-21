@@ -346,7 +346,7 @@ bool Player::Attack(string enemy)
 	return false;
 }
 
-void Player::Unlock(string item, string exit)
+void Player::Unlock(string exit, string item)
 {
 	for (auto i : this->childEntities)
 	{
