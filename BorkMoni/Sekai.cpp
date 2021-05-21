@@ -71,8 +71,8 @@ Sekai::Sekai()
 	fisherman->AutoEquip();
 
 	Item* bone = new Item("Bone", "A bone from the leg of the skeleton.", skeleton, false, WEAPON);
-	bone->min_value = 4;
-	bone->max_value = 7;
+	bone->min_value = 6;
+	bone->max_value = 9;
 	skeleton->AutoEquip();
 
 	Item* gun = new Item("Gun", "A rusty gun that still has some ammunition.", gunDeck, false, WEAPON);
@@ -182,6 +182,11 @@ bool Sekai::GameLogic(vector<string> args)
 		else if (args[0] == "attack")
 		{
 			youWin = player->Attack(args[1]);
+			return ret;
+		}
+		else if (args[0] == "drink")
+		{
+			youWin = player->Drink(args[1]);
 			return ret;
 		}
 	}

@@ -8,7 +8,6 @@ Creature::Creature(const string name, const string description, Room* room) : En
 	type = NPC;
 	hit_points = 1;
 	weapon = armour = NULL;
-	combat_target = NULL;
 }
 
 Creature::~Creature()

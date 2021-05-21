@@ -23,6 +23,7 @@ public:
 	void Equip(string item);
 	bool Attack(string enemy);
 	void Unlock(string exit, string item);
+	bool Drink(string strong0);
 
 };
 

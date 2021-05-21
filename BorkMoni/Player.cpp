@@ -251,7 +251,6 @@ void Player::Inventory()
 
 void Player::Give(string item, string destinationNPC)
 {
-	
 	for (auto invenItem : this->childEntities)
 	{
 		if (ToLowerCase(invenItem->name) == item && invenItem->type == ITEM)
@@ -382,4 +381,26 @@ void Player::Unlock(string exit, string item)
 		}
 	}
 	cout << "The " << item << " can not be found in your inventory...\n";
+}
+
+bool Player::Drink(string strong0)
+{
+	for (auto i : this->childEntities)
+	{
+		if (ToLowerCase(i->name) == strong0 && i->type == ITEM)
+		{
+			if (i->name == "Potion")
+			{
+				cout << "Congratulations!! You win!!\n";
+				return true;
+			}
+			else if (i->name == "Rum")
+			{
+				cout << "Oh no, you got drunk!! That wasn't the eternal life potion!! BAD ENDING\n";
+				return true;
+			}
+			cout << "\nYou can't drink '" << i->name << "'.\n";
+		}
+	}
+	cout << "The " << strong0 << " can not be found in your inventory...\n";
 }

@@ -17,7 +17,6 @@ public:
 	/*virtual*/ void ReceiveAttack(string enemy);
 
 	//Variables
-	Creature* combat_target;
 	int hit_points;
 	Item* weapon;
 	Item* armour;
