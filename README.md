@@ -7,7 +7,6 @@ Hi! This is a simple zork game that I have developed in one week. In this file y
 
 This entire code is developed by Mónica Martín. 
 
-
 ## Guide
 
 You wake up in the seashore with one mission: to find the potion and drink it to escape from this universe. Take care because there are many drinks and only one will allow you to reach the good ending. 
@@ -17,6 +16,9 @@ Use the ladder to get to the Ship, get the Shield and equip it, go down and get 
 
 Extra help for difficult commands: give rum to fisherman, use key in box, take axe from box, unlock east with ladder.
 
+## Map
+
+![BorkMap](https://github.com/monikamnc/Bork/blob/main/MapBork.jpg?raw=true)
 
 ## Command list
 
