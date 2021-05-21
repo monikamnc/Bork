@@ -345,3 +345,41 @@ bool Player::Attack(string enemy)
 	}
 	return false;
 }
+
+void Player::Unlock(string item, string exit)
+{
+	for (auto i : this->childEntities)
+	{
+		if (ToLowerCase(i->name) == item && i->type == ITEM)
+		{
+			for (auto e : parent->childEntities)
+			{
+				if (ToLowerCase(e->name) == exit)
+				{
+					if (((Exit*)e)->key == i)
+					{
+						if (((Exit*)e)->locked)
+						{
+							cout << "You unlock " << exit << " with " << item << "...\n";
+							((Exit*)e)->locked = false;
+							return;
+						}
+						else
+						{
+							cout << "The exit " << exit << " is already open.\n";
+							return;
+						}
+					}
+					else
+					{
+						cout << "The " << item << " can not unlock exit " << exit << "...\n";
+						return;
+					}
+				}
+			}
+			cout << "The " << exit << " can not be found in this room...\n";
+			return;
+		}
+	}
+	cout << "The " << item << " can not be found in your inventory...\n";
+}

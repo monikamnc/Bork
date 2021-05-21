@@ -207,6 +207,11 @@ bool Sekai::GameLogic(vector<string> args)
 			player->Take(args[1], args[3]);
 			return ret;
 		}
+		else if (args[0] == "unlock")
+		{
+			player->Unlock(args[1], args[3]);
+			return ret;
+		}
 	}
 
 	cout << "I don't understand you, try again please.\n";

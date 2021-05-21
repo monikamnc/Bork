@@ -17,7 +17,6 @@ public:
 
 	//Variables
 	bool one_way;
-	bool closed;
 	bool locked;
 	string opposite_name;
 	Room* destination;
