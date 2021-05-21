@@ -54,6 +54,4 @@ void Room::Look() const
 
 		}
 	}
-
-	cout << "\n";
 }

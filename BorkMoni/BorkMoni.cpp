@@ -72,6 +72,7 @@ void updateStateMachine()
 		if(sekaiDeIchiban.youWin) { ChangeState(finish); break; }
 		ChangeState(waitingInput);
 		frase.clear();
+		cout << "\n";
 		break;
 
 

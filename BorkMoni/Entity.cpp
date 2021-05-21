@@ -19,6 +19,12 @@ void Entity::Look() const
 {
 	cout << name << "\n";
 	cout << description << "\n";
+
+	for (auto i : this->childEntities)
+	{
+		cout << i->name << "\n";
+		cout << i->description << "\n";
+	}
 }
 
 void Entity::ChangeParent(Entity* parentNew)

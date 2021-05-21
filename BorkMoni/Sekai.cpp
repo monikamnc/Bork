@@ -25,7 +25,7 @@ Sekai::Sekai()
 	Exit* gunToOrlop = new Exit("down", "up", "Crushy stairs", gunDeck, orlopDeck);
 
 	//seashoreToSea->locked = true;
-	//seashoreToShip->locked = true;
+	seashoreToShip->locked = true;
 
 	entities.push_back(seashore);
 	entities.push_back(fisherH);

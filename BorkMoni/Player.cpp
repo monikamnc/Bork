@@ -41,13 +41,13 @@ void Player::Move(string args)
 
 				if (et->locked)
 				{
-					cout << "\nThat exit is locked.\n";
+					cout << "That exit is locked.\n";
 					return;
 				}
 
 				//Si encontramos una salida y es la dirección correcta, borramos el child player de roomX
 				//Asignar nuevo parent a player
-				cout << "\nYou take direction " << et->GetNameFrom((Room*)parent) << "...\n";
+				cout << "You take direction " << et->GetNameFrom((Room*)parent) << "...\n";
 
 				Entity* aux = (et->GetDestinationFrom((Room*)parent));
 				ChangeParent(aux);
@@ -58,13 +58,13 @@ void Player::Move(string args)
 			{
 				if (et->locked)
 				{
-					cout << "\nThat exit is locked.\n";
+					cout << "That exit is locked.\n";
 					return;
 				}
 
 				//Si encontramos una salida y es la dirección correcta, borramos el child player de roomX
 				//Asignar nuevo parent a player
-				cout << "\nYou take direction " << et->GetNameFrom((Room*)parent) << "...\n";
+				cout << "You take direction " << et->GetNameFrom((Room*)parent) << "...\n";
 
 				Entity* aux = (et->GetDestinationFrom((Room*)parent));
 				ChangeParent(aux);
@@ -73,7 +73,7 @@ void Player::Move(string args)
 			}
 		}
 	}
-	cout << "\nThere is no exit at '" << args << "'.\n";
+	cout << "There is no exit at '" << args << "'.\n";
 }
 
 void Player::Take(string args)
@@ -86,13 +86,13 @@ void Player::Take(string args)
 			
 			if (ToLowerCase(var->name) == args)
 			{
-				cout << "\nYou take " << var->name << ".\n";
+				cout << "You take " << var->name << ".\n";
 				var->ChangeParent(this);
 				return;
 			}
 		}
 	}
-	cout << "\nThere is no item here with that name.\n";
+	cout << "There is no item here with that name.\n";
 }
 
 void Player::Drop(string itemDropped, string itemContainer)
@@ -107,13 +107,14 @@ void Player::Drop(string itemDropped, string itemContainer)
 
 				if (ToLowerCase(var->name) == itemDropped)
 				{
-					cout << "\nYou drop " << var->name << ".\n";
+					cout << "You drop " << var->name << ".\n";
 					var->ChangeParent(parent);
 					return;
 				}
 			}
 		}
-		cout << "\nYou don't have that item in your inventory.\n";
+		cout << "You don't have that item in your inventory.\n";
+		return;
 	}
 	else if (itemDropped != itemContainer)
 	{
@@ -127,25 +128,25 @@ void Player::Drop(string itemDropped, string itemContainer)
 					{
 						if (((Item*)con)->item_type == GENERIC)
 						{
-							cout << "\nYou drop " << var->name << " into " << con->name << ".\n";
+							cout << "You drop " << var->name << " into " << con->name << ".\n";
 							var->ChangeParent(con);
 							return;
 						}
 						else
 						{
-							cout << "\nYou can't put " << var->name << " into " << con->name << ".\n";
+							cout << "You can't put " << var->name << " into " << con->name << ".\n";
 							return;
 						}
 					}
 				}
-				cout << "\nYou don't have " << itemContainer << " in your inventory.\n";
+				cout << "You don't have " << itemContainer << " in your inventory.\n";
 				return;
 			}
 		}
-		cout << "\nYou don't have " << itemDropped << " in your inventory.\n";
+		cout << "You don't have " << itemDropped << " in your inventory.\n";
 		return;
 	}
-	cout << "\nYou can't put " << itemDropped << " into " << itemContainer << ".\n";
+	cout << "You can't put " << itemDropped << " into " << itemContainer << ".\n";
 }
 
 void Player::Use(string usableO, string destinationO)
@@ -163,25 +164,30 @@ void Player::Use(string usableO, string destinationO)
 					{
 						if (((Item*)invenDest)->closed)
 						{
-							cout << "\nYou use " << usableO << " in " << destinationO << "...\n";
+							cout << "You use " << usableO << " in " << destinationO << "...\n";
 							((Item*)invenDest)->closed = false;
 							((Item*)invenDest)->Look();
 							return;
 						}
 						else
 						{
-							cout << "\nThe " << usableO << " can not be used in " << destinationO << "...\n";
+							cout << "The " << usableO << " can not be used in " << destinationO << "...\n";
 							return;
 						}
 					}
+					else
+					{
+						cout << "The " << usableO << " can not be used in " << destinationO << "...\n";
+						return;
+					}
 				}
 			}
-			cout << "\nThe " << destinationO << " can not be found in your inventory...\n";
+			cout << "The " << destinationO << " can not be found in your inventory...\n";
 			return;
 		}
 	}
 
-	cout << "\nThe " << usableO << " can not be found in your inventory...\n";
+	cout << "The " << usableO << " can not be found in your inventory...\n";
 	return;
 	//Player deberá tener el objeto usable en el inventario pero el destinatario debe estar en la misma sala
 	/*for (auto var : parent->childEntities)
@@ -223,23 +229,23 @@ void Player::Give(string item, string destinationNPC)
 					{
 						invenItem->ChangeParent(NULL);
 						((Creature*)npc)->hit_points = 0;
-						cout << "\nYou give '" << invenItem->name << "' to " << npc->name << ".\n";
+						cout << "You give '" << invenItem->name << "' to " << npc->name << ".\n";
 						cout << "The '" << npc->name << "' starts to drink " << invenItem->name << "...\n";
 						cout << "The '" << npc->name << "' chokes and dies.\n";
 						return;
 					}
 					else
 					{
-						cout << "\nYou can't give '" << item << "' to " << npc->name << ".\n";
+						cout << "You can't give '" << item << "' to " << npc->name << ".\n";
 						return;
 					}
 				}
 			}
-			cout << "\n '" << destinationNPC << "' is not in this room.\n";
+			cout << "'" << destinationNPC << "' is not in this room.\n";
 			return;
 		}
 	}
-	cout << "\n '" << item << "' not found in your inventory.\n";
+	cout << "'" << item << "' not found in your inventory.\n";
 
 	return;
 
@@ -249,17 +255,17 @@ void Player::Loot(string args)
 {
 	for (auto npc : parent->childEntities)
 	{
-		if (npc->type == NPC && ((Creature*)npc)->hit_points <= 0)
+		if (npc->type == NPC && ((Creature*)npc)->hit_points <= 0 && ToLowerCase(npc->name) == args)
 		{
 			for (auto item : npc->childEntities)
 			{
-				cout << "\nYou loot " << item->name << ".\n";
+				cout << "You loot " << item->name << ".\n";
 				item->ChangeParent(this);
 			}
 			return;
 		}
 	}
-	cout << "\n The" << args <<" is not in this room.\n";
+	cout << "The " << args <<" is not in this room.\n";
 }
 
 void Player::Equip(string item)
